@@ -1,5 +1,6 @@
 import random
 
+# first function to explain the games and direct pc to another function user asked
 def main_menu():
     print('''
 There are 2 games that you can choose to play. \n
@@ -14,11 +15,13 @@ enter the number: '''))
     elif user_game == 2:
         choosen_mode()
 
+# when user wants to play rock, paper, scissors; in this function they can choose between 2 modes available .
 def choosen_mode():
-    user = input('''
+    user = int(input('''
 do you want to play rock,paper,scissors with pc or another user?: \n
 if with pc : 0
-if with user : 1 ''')
+if with user : 1 
+enter the number: '''))
     if user == 0:
         pc_modes()
     elif user == 1:
@@ -29,7 +32,7 @@ def pc_modes():
     mode 1: you and pc will play the game until one of you reaches specific score, whoever reached faster, is the winner.\n
     mode 2: you are the only player. you can choose lost point and win point for example -2 you lose, 2 you win.\n
     mode 3: you and pc play for your chosen times. after times is over, whoever reaches the highest score is the winner. \n
-    mode 4: there are two users playing. ''')
+     ''')
     user_mode = int(input('which mode you want to play? 1, 2, 3? enter the number: '))
     if user_mode == 1:
         pc_mode_1()
@@ -64,18 +67,22 @@ def user_mode_1():
     chances = int(input('until what score you want to play?'))
 
     while True:
-        user1 = input('rock, paper, scissors?: ')
-        user2 = input('rock, paper, scissors?: ')
+        user1 = input('rock, paper, scissors?: ').lower()
+        user2 = input('rock, paper, scissors?: ').lower()
         if (user2 == 'scissors' and user1 == 'rock') or \
                 (user2 == 'paper' and user1 == 'scissors') or \
                 (user2 == 'rock' and user1 == 'paper'):
             user1_scores += 1
             print(f'{username2} is wrong. {username1}:', user1_scores)
+            print(f'{username1} : {user1_scores} vs {username2} : {user2_scores}')
+
         elif (user2 == 'rock' and user1 == 'scissors') or \
                 (user2 == 'scissors' and user1 == 'paper') or \
                 (user2 == 'paper' and user1 == 'rock'):
             user2_scores += 1
             print(f"{username1} is wrong. {username2}'s score:", user2_scores)
+            print(f'{username1} : {user1_scores} vs {username2} : {user2_scores}')
+
         elif (user2 == 'rock' and user1 == 'rock') or \
                 (user2 == 'scissors' and user1 == 'scissors') or \
                 (user2 == 'paper' and user1 == 'paper'):
@@ -94,25 +101,24 @@ def user_mode_2():
     first_username = input('first user please enter your name: ')
     second_username = input('second user please enter your name: ')
     user1_win_point = int(input(f'{first_username} please choose the winning point: '))
-    user1_lost_point = int(input(' please choose the losing point: '))
     user1_scores = 0
     user2_scores = 0
-    # game will continue until it reaches win point or losing point
-    while user1_win_point > user1_total_score >= user1_lost_point:
-        user1 = input(f'{first_username}, rock, paper, scissors?: ')
-        user2 = input(f'{second_username}, rock, paper, scissors?: ')
+    # game will continue until it reaches win point 
+    while user1_win_point > user1_total_score :
+        user1 = input(f'{first_username}, rock, paper, scissors?: ').lower()
+        user2 = input(f'{second_username}, rock, paper, scissors?: ').lower()
         if (user2 == 'scissors' and user1 == 'rock') or \
             (user2 == 'paper' and user1 == 'scissors') or \
             (user2 == 'rock' and user1 == 'paper'):
             user1_scores += 1
-            user1_total_score += user1_scores
+            user1_total_score += 1
             print(f'{second_username} is wrong. {first_username}:', user1_scores)
             print(f'{first_username} : {user1_total_score} vs {second_username} : {user2_total_score}')
         elif (user2 == 'rock' and user1 == 'scissors') or \
             (user2 == 'scissors' and user1 == 'paper') or \
             (user2 == 'paper' and user1 == 'rock'):
             user2_scores += 1
-            user2_total_score += user2_scores
+            user2_total_score += 1
             print(f'{first_username} is wrong. {second_username} score: {user2_scores}')
             print(f'{first_username} : {user1_total_score} vs {second_username} : {user2_total_score}')
 
@@ -125,18 +131,9 @@ def user_mode_2():
         if user1_total_score == user1_win_point:
             print(f'{first_username} is the winner with {user1_total_score}scores!')
             break
-        elif user1_total_score == user1_lost_point:
-            print(f'''{first_username} has lost the game with {user1_total_score} scores!\n
-                        {second_username} is the winner with {user2_total_score}.!''')
-            break
         elif user2_total_score == user1_win_point:
             print(f'{second_username} is the winner with {user2_total_score}scores!')
             break
-        elif user2_total_score == user1_lost_point:
-            print(f'''{second_username} has lost the game with {user2_total_score} scores!\n
-                    {first_username}is the winner with {user1_total_score}.''')
-            break
-
 
 def user_mode_3():
     rounds_played = 0
@@ -145,32 +142,40 @@ def user_mode_3():
     username2 = input('second user please enter your name: ')
     user1_scores = 0
     user2_scores = 0
-    while rounds_played < rounds:
+    while rounds_played <= rounds:
         user1 = input('rock, paper, scissors?: ')
         user2 = input('rock, paper, scissors?: ')
         if (user2 == 'scissors' and user1 == 'rock') or \
                 (user2 == 'paper' and user1 == 'scissors') or \
                 (user2 == 'rock' and user1 == 'paper'):
             user1_scores += 1
-            print('Wrong guess. second user:', user1_scores)
+            print(f'{username2} is wrong. {username1}:', user1_scores)
+            print(f'{username1} : {user1_scores} vs {username2} : {user2_scores}')
+
         elif (user2 == 'rock' and user1 == 'scissors') or \
                 (user2 == 'scissors' and user1 == 'paper') or \
                 (user2 == 'paper' and user1 == 'rock'):
             user2_scores += 1
-            print('Right. Your score:', user2_scores)
+            print(f'{username1} is wrong. {username2}:', user2_scores)
+            print(f'{username1} : {user1_scores} vs {username2} : {user2_scores}')
+
         elif (user2 == 'rock' and user1 == 'rock') or \
                 (user2 == 'scissors' and user1 == 'scissors') or \
                 (user2 == 'paper' and user1 == 'paper'):
             print('no score; said the same item.')
+            print(f'{username1} : {user1_scores} vs {username2} : {user2_scores}')
+
         rounds_played += 1
-        if user1_scores > user2_scores:
-            print(
-                f"{username1} score: {user1_scores}; {username2} score: {user2_scores}. {username1} is the winner.")
-        elif user1_scores < user2_scores:
-            print(
-                f"{username1} score: {user1_scores}; {username2} score: {user2_scores}. {username2} is the winner.")
-        elif user1_scores == user2_scores:
-            print(f'there is no winner or loser. {user1_scores}:{user2_scores}')
+        if rounds_played == rounds:
+            if user1_scores > user2_scores:
+                print(f"{username1} score: {user1_scores}; {username2} score: {user2_scores}. {username1} is the winner.")
+                break
+            elif user1_scores < user2_scores:
+                print(f"{username1} score: {user1_scores}; {username2} score: {user2_scores}. {username2} is the winner.")
+                break
+            elif user1_scores == user2_scores:
+                print(f'there is no winner or loser. {user1_scores}:{user2_scores}')
+                break
 
 def pc_mode_1():
     user_score = 0
@@ -180,7 +185,7 @@ def pc_mode_1():
     while True:
         valid_inputs = ['scissors', 'rock', 'paper']
         pc_input = random.choice(valid_inputs)
-        user_input = input('rock, paper, scissors?: ')
+        user_input = input('rock, paper, scissors?: ').lower()
 
         if (user_input == 'scissors' and pc_input == 'rock') or\
                 (user_input == 'paper' and pc_input == 'scissors') or\
@@ -232,8 +237,10 @@ def pc_mode_2():
         print(f"You've got {total_score} scores!")
         if total_score == win_point:
             print('you won.')
+            break
         elif total_score == lost_point:
             print('you lost.')
+            break
 
 
 def pc_mode_3():
@@ -243,7 +250,7 @@ def pc_mode_3():
     choosen_rounds = int(input('how many times do you want to play?: '))
     while rounds_played < choosen_rounds:
         valid_inputs = ['scissors', 'rock', 'paper']
-        user_input = input('rock, paper, scissors?: ')
+        user_input = input('rock, paper, scissors?: ').lower()
         pc_input = random.choice(valid_inputs)
         if (user_input == 'scissors' and pc_input == 'rock') or\
                 (user_input == 'paper' and pc_input == 'scissors') or\
@@ -302,7 +309,7 @@ def guessing_game():
             print('Sorry, your chances reached the limit!')
             break
 
-
+main_menu()
 
 while True:
     start_over = int(input('Do you want to play again? if yes, type 0 if not type 1: '))
@@ -312,4 +319,3 @@ while True:
     else:
         print('had a nice time with you! I hope you come back soon!  bye.')
         break
-
