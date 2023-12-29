@@ -1,11 +1,13 @@
 import random
 
 def main_menu():
-    print('''There are 2 games that you can choose to play. \n
+    print('''
+There are 2 games that you can choose to play. \n
 first game is guess the number game and the second game is rock,paper,scissor. ''')
-    user_game = int(input('''which game do you want to play? \n
-    1. guessing number \n
-    2. rock,paper,scissor. \n
+    user_game = int(input('''
+which game do you want to play? \n
+1. guessing number:
+2. rock,paper,scissor: 
 enter the number: '''))
     if user_game == 1:
         guessing_game()
@@ -13,10 +15,10 @@ enter the number: '''))
         choosen_mode()
 
 def choosen_mode():
-    user = input('''do you want to play rock,paper,scissors with pc or another user?: \n
-                 if with pc : 0
-                 if with user : 1
-                ''')
+    user = input('''
+do you want to play rock,paper,scissors with pc or another user?: \n
+if with pc : 0
+if with user : 1 ''')
     if user == 0:
         pc_modes()
     elif user == 1:
@@ -38,11 +40,12 @@ def pc_modes():
 
 
 def user_modes():
-    print('''Nice. we have 3 modes to play RCP game. \n
-        mode 1: you and another user will play the game until one of you reaches specific score,\
-whoever reached faster,is the winner.\n
-        mode 2: you can choose lost point and win point. for example -2 you lose, 2 you win.\n
-        mode 3: you and another user play for the chosen times. after times is over,\
+    print('''
+Nice. we have 3 modes to play RCP game. 
+mode 1: you and another user will play the game until one of you reaches specific score,
+whoever reached faster,is the winner.
+mode 2: you can choose lost point and win point. for example -2 you lose, 2 you win.
+mode 3: you and another user play for the chosen times. after times is over,
 whoever reaches the highest score is the winner. ''')
     user_choice = int(input('which mode you want to play? 1, 2, 3? enter the number: '))
     if user_choice == 1:
